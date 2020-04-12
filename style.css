@@ -1,0 +1,27 @@
+div {
+  text-align: center;
+  font-size: 20px;
+}
+
+.wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.computer {
+  float: left;
+}
+
+.player {
+  float: right;
+}
+
+.title{
+    /* vertical-align: middle; */
+    margin: auto;
+}
+
+hr {
+  width: 300px;
+}
