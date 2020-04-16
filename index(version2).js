@@ -4,7 +4,6 @@
  * 3. the choice
  */
 
- 
 //initiaize variables
 let option = ["rock", "paper", "scissors"];
 let userGuessArr = [];
@@ -21,6 +20,7 @@ function computerGuessF() {
 }
 
 function check() {
+  //call computerGuessF() one time already?
   let computerGuess = computerGuessF();
   console.log(
     `userGuessArr = ${userGuessArr}, userGuess = ${userGuessElement}, computerGuess = ${computerGuess}`
@@ -62,6 +62,31 @@ function winLogic() {
   }
 }
 
+function upDownAnimation() {
+  document
+    .querySelector(".computer-img img")
+    .setAttribute("src", "left_fist.png");
+  document
+    .querySelector(".player-img img")
+    .setAttribute("src", "right_fist.png");
+  document.querySelector(".computer-img img").classList.add("animation");
+  document.querySelector(".player-img img").classList.add("animation");
+  countDown();
+}
+
+//careful, execute in the same time
+function countDown() {
+  setTimeout(() => {
+    document.querySelector(".title").textContent = "3";
+  }, 200);
+  setTimeout(() => {
+    document.querySelector(".title").textContent = "2";
+  }, 1200);
+  setTimeout(() => {
+    document.querySelector(".title").textContent = "1";
+  }, 2200);
+}
+
 //execute
 for (let i = 0; i < allBtns.length; i++) {
   allBtns[i].addEventListener("click", (e) => {
@@ -69,7 +94,16 @@ for (let i = 0; i < allBtns.length; i++) {
     let userSrc = userGuess + ".png";
     userGuessArr.push(userGuess);
     userGuessElement = userGuessArr[0];
-    document.querySelector(".player-img img").setAttribute("src", userSrc);
-    check();
+    // document.querySelector(".computer-img img").classList.add("animation");
+    // document.querySelector(".player-img img").classList.add("animation");
+    upDownAnimation();
+    // countDown();
+    setTimeout(() => {
+      document.querySelector(".player-img img").setAttribute("src", userSrc);
+      check();
+      document.querySelector(".computer-img img").classList.remove("animation");
+      document.querySelector(".player-img img").classList.remove("animation");
+    }, 3000);
   });
 }
+
